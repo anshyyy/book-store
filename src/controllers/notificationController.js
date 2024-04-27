@@ -20,4 +20,5 @@ app.get("/",async(req,res)=>{
             success: false
         });
     }
-})
+});
+module.exports = app;

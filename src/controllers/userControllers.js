@@ -111,7 +111,7 @@ app.post("/",async(req,res)=>{
 
 app.post("/login",async(req,res)=>{
     try{
-
+        console.log(req.body);
         const {email,password} = req.body;
         const response = await signIn(email,password);
         return res.status(200).json({

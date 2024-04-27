@@ -40,7 +40,7 @@ app.post("/create",async(req,res)=>{
         //     },
         //   },
         const book = await Book.create(req.body);
-        await Notification.create({title:`A new Book : ${book.title} has been added into the database`});
+        console.log(await Notification.create({title:`A new Book : ${book.title} has been added into the database`}));
         return res.status(200).json({
             msg: "SuccessFully created the book",
             data: book,
