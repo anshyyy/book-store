@@ -73,6 +73,42 @@ app.post("/", async (req, res) => {
     }
 });
 
+
+app.post("/filter",async(req,res)=>{
+    try{
+            const criteria = req.body;
+  
+            let filter = {};
+            
+            if (criteria.minRating !== undefined) {
+              filter.ratings = { $gte: criteria.minRating };
+            }
+            
+            if (criteria.author) {
+              filter.author = { $regex: new RegExp(criteria.author, 'i') }; // Case insensitive search
+            }
+            
+            if (criteria.publisher) {
+              filter.publisher = { $regex: new RegExp(criteria.publisher, 'i') }; // Case insensitive search
+            }
+        
+            const books = await Book.find(filter);
+            return res.status(200).json({
+                msg: "SuccessFully fetched the book",
+                data: books,
+                success: true
+            });
+         
+
+    } catch(error){
+        return res.status(501).json({
+            msg: "Something went wrong",
+            err: error.message ?? error,
+            success: false
+        });
+    }
+})
+
 app.get("/:id", async (req, res) => {
     try {
 

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const {JWT_KEY} = require("../config/server_config");
 const User = require("../models/user");
+const Issue = require("../models/issue");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 function createToken(user) {
@@ -63,9 +64,34 @@ function createToken(user) {
     }
   }
 
+app.get("/:id",async(req,res)=>{
+  try{
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    const issues = await Issue.find({ assignedTo: userId }).populate({
+      path: 'bookId',
+      model: 'Book'
+    });
+    //console.log(issues);
+    user.booksIssued = issues;
+    console.log(user);
+    return res.status(200).json({
+        msg : "SuccessFully fetched the user",
+        data : user,
+        success : true
+    })
+  } catch(error){
+    return res.status(501).json({
+      msg : "Something went wrong",
+      err : error.message ?? error,
+      success : false
+  });
+  }
+})
+
 app.post("/",async(req,res)=>{
     try {
-         
+  
         const user = await User.create(req.body);
         console.log(user);
         return res.status(200).json({

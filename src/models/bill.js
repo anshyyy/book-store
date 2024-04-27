@@ -21,12 +21,8 @@ const billSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    bookId: {
-      type: Schema.Types.ObjectId,
-      ref: "Book",
-    },
     data :{
-        type : {}
+        type : []
     },
     subscription_id: {
       type: String,

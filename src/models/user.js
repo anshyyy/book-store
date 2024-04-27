@@ -33,6 +33,16 @@ const userSchema = new Schema(
       type: Boolean,
       default: false
     },
+    lastDate :{
+        type : Date,
+        default: null
+    },
+    booksIssued: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Issue"
+      }
+    ]
   },
   { timestamps: true }
 );
