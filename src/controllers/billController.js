@@ -32,7 +32,7 @@ app.post("/", async (req, res) => {
 
         const bill = await Bill.create({
             userId: data.user_id,
-            data: data,
+            data: issue,
             subscription_id: subscritpion_id??"",
             amount: amount,
             discount: discount??0,
