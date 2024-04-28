@@ -33,7 +33,7 @@ app.post("/", async (req, res) => {
         const bill = await Bill.create({
             userId:userId,
             data: issue,
-            subscription_id: subscritpion_id??"",
+            subscription_id: req.body.subscritpion_id??"None",
             amount: amount,
             discount: discount??0,
             paid: true
