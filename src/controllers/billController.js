@@ -16,7 +16,7 @@ app.post("/", async (req, res) => {
         issue.forEach(async (element) => {
             console.log(element);
             await Issue.create({
-                bookId: element.bookId,
+                bookId: element.id,
                 assignedTo: userId,
                 returnDate: seventhDayFromToday
             });
