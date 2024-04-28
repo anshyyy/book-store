@@ -114,6 +114,26 @@ app.get("/:id", async (req, res) => {
       success: false
     });
   }
+});
+
+app.get("/:id",async(req,res)=>{
+  try{
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    console.log(user);
+    return res.status(200).json({
+      msg: "SuccessFully fetched the user",
+      data: user,
+      success: true
+    });
+
+  } catch(error){
+    return res.status(501).json({
+      msg: "Something went wrong",
+      err: error.message ?? error,
+      success: false
+    });
+  }
 })
 
 app.post("/", async (req, res) => {
