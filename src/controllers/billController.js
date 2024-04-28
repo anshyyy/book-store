@@ -14,7 +14,7 @@ app.post("/", async (req, res) => {
         var seventhDayFromToday = new Date(today);
         seventhDayFromToday.setDate(today.getDate() + 7);
         issue.forEach(async (element) => {
-            console.log(element);
+            console.log(element.id);
             await Issue.create({
                 bookId: element.id,
                 assignedTo: userId,
