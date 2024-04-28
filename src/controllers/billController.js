@@ -6,8 +6,9 @@ const User = require("../models/user");
 
 app.post("/", async (req, res) => {
     try {
-        const { user_id, data, subscritpion_id, amount, discount } = req.body;
+        const {data, subscritpion_id, discount } = req.body;
         var today = new Date();
+        console.log(req.body);
 
         // Get the date 7 days from today
         var seventhDayFromToday = new Date(today);
@@ -33,7 +34,7 @@ app.post("/", async (req, res) => {
             userId: data.user_id,
             data: data,
             subscription_id: subscritpion_id??"",
-            amount: amount,
+            amount: data.amount,
             discount: discount??0,
             paid: true
         });
