@@ -6,18 +6,18 @@ const User = require("../models/user");
 
 app.post("/", async (req, res) => {
     try {
-        const {data, subscritpion_id, discount } = req.body;
+        const {userId,issue, amount } = req.body;
         var today = new Date();
         console.log(req.body);
 
         // Get the date 7 days from today
         var seventhDayFromToday = new Date(today);
         seventhDayFromToday.setDate(today.getDate() + 7);
-        data?.issue.forEach(async (element) => {
+        issue.forEach(async (element) => {
             console.log(element);
             await Issue.create({
                 bookId: element.bookId,
-                assignedTo: data.user_id,
+                assignedTo: userId,
                 returnDate: seventhDayFromToday
             });
             //  } else if(element.typOf == "subscription"){
@@ -34,7 +34,7 @@ app.post("/", async (req, res) => {
             userId: data.user_id,
             data: data,
             subscription_id: subscritpion_id??"",
-            amount: data.amount,
+            amount: amount,
             discount: discount??0,
             paid: true
         });
