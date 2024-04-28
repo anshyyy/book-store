@@ -35,7 +35,7 @@ app.post("/", async (req, res) => {
             data: issue,
             subscription_id: req.body.subscritpion_id??"None",
             amount: amount,
-            discount: discount??0,
+            discount: 0,
             paid: true
         });
         return res.status(200).json({
