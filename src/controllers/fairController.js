@@ -4,6 +4,15 @@ const Fair = require("../models/fair");
 
 app.get("/",async(req,res)=>{
     try{
+
+    const faire = await Fair.find();
+    if(faire){
+      return res.status(200).json({
+        msg : "SuccessFully fetched the fair",
+        data : faire[0],
+        success : true
+    });
+    }
     const fair = await Fair.create({
         name : "World Class Fair for Books!!!! ",
         books : [
