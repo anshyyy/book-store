@@ -2,11 +2,10 @@ const express = require("express");
 const app = express();
 const Fair = require("../models/fair");
 
-app.post("/",async(req,res)=>{
+app.get("/",async(req,res)=>{
     try{
-
     const fair = await Fair.create({
-        name : req.body.name,
+        name : "World Class Fair for Books!!!! ",
         books : [
             {
               ISBN: "380728273",
