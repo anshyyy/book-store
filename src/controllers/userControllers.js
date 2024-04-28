@@ -63,7 +63,7 @@ async function signIn(userEmail, plainPassword) {
     throw error;
   }
 }
-app.post("subscribe/:id", async (req, res) => {
+app.post("/subscribe/:id", async (req, res) => {
   try {
 
 
